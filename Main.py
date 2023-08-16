@@ -1,29 +1,23 @@
 from dxfwrite import DXFEngine as dxf
+import FileManager
+import Shapes
 
-DZ = 42
-HP = 20
-HB = 22
-OH = 100
-OP = 82
-OB = 100
+measurements = {
+    "OH": 100,
+    "OP": 82,
+    "OB": 100,
+    "DZ": 42,
+    "HP": 20,
+    "HB": 22,
+    "ŠZ": 41,
+    "ŠP": 42,
+}
 
-mesh_width = (OH/2)+3
+draft = FileManager.File(measurements)
 
-drawing = dxf.drawing('doublet.dxf')
-drawing.add_layer('MESH', color=7, linetype='CONTINUOUS')
+draft.draw_mesh()
+draft.draw_basic_contour()
 
-# chest_line = dxf.rectangle((0, 0), mesh_width, -DZ, layer='MESH')
-# waist_line = dxf.rectangle((0, 0), mesh_width, -HP, layer='MESH')
-hip_line = dxf.rectangle((0, 0), mesh_width, -(DZ+HB), layer='MESH')
-chest_line = dxf.line((0, -HP), (mesh_width, -HP), layer='MESH')
-waist_line = dxf.line((0, -DZ), (mesh_width, -DZ), layer='MESH')
-side_line = dxf.line(((mesh_width/2)+1, -HP), ((mesh_width/2)+1, -(DZ+HB)), layer='MESH')
-
+draft.save()
 
 
-drawing.add(chest_line)
-drawing.add(waist_line)
-drawing.add(hip_line)
-drawing.add(side_line)
-
-drawing.save()
