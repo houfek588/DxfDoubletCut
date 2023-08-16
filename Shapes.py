@@ -17,3 +17,6 @@ class BasicShapes:
         self.drawing.add(rect)
 
         return rect
+
+    def get_layer(self):
+        return self.layer

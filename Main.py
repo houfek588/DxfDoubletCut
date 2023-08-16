@@ -11,6 +11,7 @@ measurements = {
     "HB": 22,
     "ŠZ": 41,
     "ŠP": 42,
+    "ŠR": 15,
 }
 
 draft = FileManager.File(measurements)
